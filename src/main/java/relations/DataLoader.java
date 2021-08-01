@@ -2,12 +2,16 @@ package relations;
 
 import org.hibernate.Session;
 
+import relations.manyToMany.Container;
+import relations.manyToMany.Ship;
+import relations.oneToMany.Account;
+import relations.oneToMany.Bank;
 import relations.oneToOne.Book;
 import relations.oneToOne.Reader;
 
 public class DataLoader {
 
-	public static void load(Session session) {
+	public static void loadOneToOne(Session session) {
 		Book b1 = new Book();
 		b1.setId(1);
 		b1.setName("Dom Casmurro");
@@ -30,6 +34,47 @@ public class DataLoader {
 		r2.setBook(b1);
 		session.save(r2);
 		created(r2);
+	}
+
+	public static void loadOneToMany(Session session) {
+		Account a = new Account();
+		a.setId(1);
+		a.setNumber(12345);
+		a.setOwner("David");
+
+		Bank b = new Bank();
+		b.setId(1);
+		b.setCity("Gotham");
+		b.setName("Gotham City Bank");
+		b.getAccounts().add(a);
+
+		a.setBank(b);
+
+		session.save(b);
+		session.save(a);
+
+		created(a);
+		created(b);
+	}
+
+	public static void loadManyToMany(Session session) {
+		Container c1 = new Container();
+		c1.setId(1);
+		c1.setColor("Blue");
+
+		Ship s1 = new Ship();
+		s1.setId(1);
+		s1.setName("Titanic");
+		s1.setCapacity(2435);
+
+//		s1.getContainers().add(c1);
+		c1.getShips().add(s1);
+
+		session.save(c1);
+		session.save(s1);
+
+		created(c1);
+		created(s1);
 	}
 
 	public static void created(Object obj) {

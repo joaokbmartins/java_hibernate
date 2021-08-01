@@ -1,4 +1,4 @@
-package relations.oneToOne;
+package relations.oneToMany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,23 +11,19 @@ public class App {
 
 	public static void main(String[] args) {
 
-		Reader david = null;
+		Bank gCBank = null;
 
-		Configuration config = new Configuration().addAnnotatedClass(Book.class).addAnnotatedClass(Reader.class)
+		Configuration config = new Configuration().addAnnotatedClass(Bank.class).addAnnotatedClass(Account.class)
 		    .configure();
-
 		SessionFactory sf = config.buildSessionFactory();
 		Session session = sf.openSession();
 
 		Transaction tx = session.beginTransaction();
-
-		DataLoader.loadOneToOne(session);
-
-		david = session.get(Reader.class, 1);
-
+		DataLoader.loadOneToMany(session);
+		gCBank = (Bank) session.get(Bank.class, 1);
 		tx.commit();
 
-		System.out.println(david);
+		System.out.println(gCBank);
 
 	}
 
