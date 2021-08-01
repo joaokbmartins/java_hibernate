@@ -1,4 +1,4 @@
-package com.joao.java_hibernate;
+package com.joao.java_hibernate.basics;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
