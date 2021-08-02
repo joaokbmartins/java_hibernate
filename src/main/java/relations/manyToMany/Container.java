@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -22,7 +21,6 @@ public class Container {
 	private String color;
 
 	@ManyToMany
-	@JoinColumn(name = "id")
 	private List<Ship> ships = new ArrayList<Ship>();
 
 	public List<Ship> getShips() {

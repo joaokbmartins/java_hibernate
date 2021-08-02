@@ -42,18 +42,25 @@ public class DataLoader {
 		a.setNumber(12345);
 		a.setOwner("David");
 
+		Account a1 = new Account();
+		a1.setId(2);
+		a1.setNumber(54321);
+		a1.setOwner("Marta");
+
 		Bank b = new Bank();
 		b.setId(1);
 		b.setCity("Gotham");
 		b.setName("Gotham City Bank");
-		b.getAccounts().add(a);
 
 		a.setBank(b);
+		a1.setBank(b);
 
 		session.save(b);
 		session.save(a);
+		session.save(a1);
 
 		created(a);
+		created(a1);
 		created(b);
 	}
 
