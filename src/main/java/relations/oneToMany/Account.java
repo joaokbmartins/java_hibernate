@@ -3,7 +3,6 @@ package relations.oneToMany;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -14,13 +13,12 @@ public class Account {
 	@Id
 	@Column(name = "id")
 	private int id;
-	@Column(name = "number", unique = true)
+	@Column(name = "number", unique = true, nullable = false)
 	private int number;
 	@Column(name = "owner")
 	private String owner;
 
-	@ManyToOne
-	@JoinColumn(name = "bank_id", referencedColumnName = "id")
+	@ManyToOne(targetEntity = Bank.class, optional = false)
 	private Bank bank;
 
 	public Bank getBank() {
