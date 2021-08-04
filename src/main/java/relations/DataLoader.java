@@ -19,6 +19,13 @@ public class DataLoader {
 		session.save(b1);
 		created(b1);
 
+		Book b2 = new Book();
+		b2.setId(2);
+		b2.setName("Dom Casmurro");
+		b2.setAuthor("Assis");
+		session.save(b2);
+		created(b2);
+
 		Reader r1 = new Reader();
 		r1.setId(1);
 		r1.setName("David");
