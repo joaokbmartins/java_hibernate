@@ -1,4 +1,4 @@
-package relations.oneToOne;
+package com.joao.java_hibernate.relations.oneToOne;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;

@@ -1,16 +1,16 @@
-package dataFetch;
+package com.joao.java_hibernate.dataFetch;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import relations.DataLoader;
-import relations.manyToMany.Container;
-import relations.manyToMany.Ship;
-import relations.oneToMany.Account;
-import relations.oneToMany.Bank;
-import relations.oneToOne.Book;
-import relations.oneToOne.Reader;
+import com.joao.java_hibernate.relations.DataLoader;
+import com.joao.java_hibernate.relations.manyToMany.Container;
+import com.joao.java_hibernate.relations.manyToMany.Ship;
+import com.joao.java_hibernate.relations.oneToMany.Account;
+import com.joao.java_hibernate.relations.oneToMany.Bank;
+import com.joao.java_hibernate.relations.oneToOne.Book;
+import com.joao.java_hibernate.relations.oneToOne.Reader;
 
 public class AppDataFetch {
 

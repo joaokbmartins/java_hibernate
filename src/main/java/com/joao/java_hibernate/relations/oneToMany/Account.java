@@ -1,4 +1,4 @@
-package relations.oneToMany;
+package com.joao.java_hibernate.relations.oneToMany;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

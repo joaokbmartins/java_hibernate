@@ -1,33 +1,24 @@
-package relations.oneToOne;
+package com.joao.java_hibernate.relations.manyToMany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import relations.DataLoader;
+import com.joao.java_hibernate.relations.DataLoader;
 
-public class AppOneToOne {
+public class AppManyToMany {
 
 	public static void main(String[] args) {
 
-		Reader david = null;
-
-		Configuration config = new Configuration().addAnnotatedClass(Book.class).addAnnotatedClass(Reader.class)
+		Configuration config = new Configuration().addAnnotatedClass(Ship.class).addAnnotatedClass(Container.class)
 		    .configure();
-
 		SessionFactory sf = config.buildSessionFactory();
 		Session session = sf.openSession();
 
 		Transaction tx = session.beginTransaction();
-
-		DataLoader.loadOneToOne(session);
-
-		david = session.get(Reader.class, 1);
-
+		DataLoader.loadManyToMany(session);
 		tx.commit();
-
-		System.out.println(david);
 
 	}
 

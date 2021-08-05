@@ -1,4 +1,4 @@
-package relations.manyToMany;
+package com.joao.java_hibernate.relations.manyToMany;
 
 import java.util.ArrayList;
 import java.util.List;

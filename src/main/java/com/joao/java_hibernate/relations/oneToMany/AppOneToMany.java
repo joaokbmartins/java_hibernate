@@ -1,11 +1,11 @@
-package relations.oneToMany;
+package com.joao.java_hibernate.relations.oneToMany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import relations.DataLoader;
+import com.joao.java_hibernate.relations.DataLoader;
 
 public class AppOneToMany {
 

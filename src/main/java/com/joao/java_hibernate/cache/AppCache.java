@@ -1,12 +1,12 @@
-package cache;
+package com.joao.java_hibernate.cache;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import relations.oneToOne.Book;
-import relations.oneToOne.Reader;
+import com.joao.java_hibernate.relations.oneToOne.Book;
+import com.joao.java_hibernate.relations.oneToOne.Reader;
 
 /*
  * *
