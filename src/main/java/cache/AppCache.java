@@ -3,36 +3,44 @@ package cache;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import relations.oneToOne.Book;
 import relations.oneToOne.Reader;
 
 /*
  * *
- * TODO: FIRST LEVEL CACHE IS ALREADY ENABLED BY DEFAULT. Same requests from same session call's DB only once.
+ * TODO: FIRST LEVEL CACHE IS ALREADY ENABLED BY DEFAULT. Same requests from same session call's DB only once.ff
  * *
  * TODO: TO ENABLE TWO LEVEL CACHE:
  * *
  * ADD DEPENDENCIES TO POM:
- * <dependency>
- * <groupId>org.ehcache</groupId>
- * <artifactId>ehcache</artifactId>
- * <version>3.8.1</version>
- * </dependency>
+ * ___<dependency>
+ * ______<groupId>org.ehcache</groupId>
+ * ______<artifactId>ehcache</artifactId>
+ * ______<version>3.8.1</version>
+ * ___</dependency>
  * *
- * <dependency>
- * <groupId>org.hibernate</groupId>
- * <artifactId>hibernate-ehcache</artifactId>
- * <version>5.4.10.Final</version> // SAVE VERSION OF HIBERNATE DEPENDENCY
- * </dependency>
+ * ___<dependency>
+ * ______<groupId>org.hibernate</groupId>
+ * ______<artifactId>hibernate-ehcache</artifactId>
+ * ______<version>5.4.10.Final</version> // SAVE VERSION OF HIBERNATE DEPENDENCY
+ * ___</dependency>
  * *
  * SET PROPERTIES ON hibernate.cfg.xml:
- *  <property name="hibernate.cache.use_second_level_cache">true</property>
- *  <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+ * ___<property name="hibernate.cache.use_second_level_cache">true</property>
+ * ___<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
  * *
  * SET CLASS AS CACHEABLE:
- * @Cacheable
- * @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+ * ___@Cacheable
+ * ___@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+ * *
+ * TO ENABLE CACHE FOR HQL QUERY (org.hibernate.query.Query):
+ * ___PROPERTY:
+ * ______<property name="hibernate.cache.use_query_cache">true</property>
+ * ___QUERY OBJs CONFIG:
+ * ______query1.cacheable(true);  // STORE IN THE SECOND LEVEL CACHE
+ * ______query2.cacheable(true);  // FECH FRON THE SECOND LEVEL CACHE
  * *
  */
 
@@ -52,9 +60,11 @@ public class AppCache {
 		session = sf.openSession();
 		session.getTransaction().begin();
 
-		Book b = (Book) session.get(Book.class, 1);
+//		Book b = (Book) session.get(Book.class, 1);
+		Query<Book> q = session.createQuery("from Book where id = 1");
+		q.setCacheable(true);
+		Book b = (Book) q.getSingleResult();
 		System.out.println(b);
-
 		session.getTransaction().commit();
 		session.close();
 
@@ -62,9 +72,11 @@ public class AppCache {
 		session1 = sf.openSession();
 		session1.getTransaction().begin();
 
-		Book b1 = (Book) session1.get(Book.class, 1);
+//		Book b1 = (Book) session1.get(Book.class, 1);
+		Query<Book> q1 = session1.createQuery("from Book where id = 1");
+		q1.setCacheable(true);
+		Book b1 = (Book) q1.getSingleResult();
 		System.out.println(b1);
-
 		session1.getTransaction().commit();
 		session1.close();
 
