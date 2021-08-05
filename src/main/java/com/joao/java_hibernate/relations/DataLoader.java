@@ -11,6 +11,17 @@ import com.joao.java_hibernate.relations.oneToOne.Reader;
 
 public class DataLoader {
 
+	public static void loadShipsPack(Session session) {
+
+		for (int i = 1; i <= 50; i++) {
+			Book b1 = new Book();
+			b1.setId(i);
+			b1.setAuthor("Author: " + i);
+			b1.setName("Book: " + i);
+			session.save(b1);
+		}
+	}
+
 	public static void loadOneToOne(Session session) {
 		Book b1 = new Book();
 		b1.setId(1);
