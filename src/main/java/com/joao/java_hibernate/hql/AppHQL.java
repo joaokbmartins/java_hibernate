@@ -68,6 +68,26 @@ public class AppHQL {
 
 		System.out.println("==================================================");
 
+		Query q6 = s1.createQuery("SELECT SUM(id) FROM Book");
+		Long idSum = (Long) q6.uniqueResult();
+		System.out.println(idSum);
+
+		System.out.println("==================================================");
+
+		Query q7 = s1.createQuery("SELECT AVG(id) FROM Book");
+		Double avrgId = (Double) q7.uniqueResult();
+		System.out.println(avrgId);
+
+		System.out.println("==================================================");
+
+		int param = 30;
+		Query q8 = s1.createQuery("SELECT MAX(id) FROM Book WHERE id < :limit");
+		q8.setParameter("limit", param);
+		Integer maxId = (Integer) q8.uniqueResult();
+		System.out.println(maxId);
+
+		System.out.println("==================================================");
+
 		s1.getTransaction().commit();
 		s1.close();
 
