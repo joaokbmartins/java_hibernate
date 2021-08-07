@@ -21,7 +21,7 @@ public class AppHQL {
 		Session session = sf.openSession();
 
 		session.getTransaction().begin();
-//		DataLoader.loadShipsPack(s1);
+//		DataLoader.loadBooksPack(s1);
 
 		System.out.println("==================================================");
 

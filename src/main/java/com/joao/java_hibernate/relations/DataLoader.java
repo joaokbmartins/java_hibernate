@@ -11,7 +11,7 @@ import com.joao.java_hibernate.relations.oneToOne.Reader;
 
 public class DataLoader {
 
-	public static void loadShipsPack(Session session) {
+	public static void loadBooksPack(Session session) {
 
 		for (int i = 1; i <= 50; i++) {
 			Book b1 = new Book();

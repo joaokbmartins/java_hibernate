@@ -17,7 +17,7 @@ public class AppObjectStates {
 
 		session.getTransaction().begin();
 
-//		DataLoader.loadShipsPack(session);
+//		DataLoader.loadBooksPack(session);
 
 		int id = 56;
 
